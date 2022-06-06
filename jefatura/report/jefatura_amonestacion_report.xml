@@ -15,25 +15,72 @@
                     <div class="page">
                         <!--<h1><span t-field="amonestacion.nombre"/> <span t-field="amonestacion.apellidos" /></h1>-->
                         
-                        <h3>Amonestación:</h3>			
-			<table class="table table-sm o_main_table">
-			   <thead>
-			      <tr>
-			         <th>Motivo</th>
-			         <th>Fecha</th>
-			      </tr>
-			   </thead>
-			   <tbody>
-			      <!--<t t-foreach="amonestacion.libro_ids" t-as="libro">-->
-				 <tr>
-			            <td>motivo</td>
-			            <td>fecha</td>
-			            <!--<td><span t-field=""/></td>-->
-				 </tr>
-			      <!--</t>-->
-			   </tbody>
-			</table>
-			<p></p>
+                        <h1>Parte de amonestación:</h1>
+                        <t t-foreach="amonestacion.alumno_id" t-as="alumno">
+                            <h4>El/La alumno/a  <span t-field="alumno.apellidos"/>  ha sido amonestado el día  <span t-field="amonestacion.fecha"/>  por el profesor <span t-field="amonestacion.profesor_id.apellidos"/> debido al siguiente motivo:</h4>
+
+                        </t>
+
+						<br/>
+
+			            <table class="table table-sm o_main_table">
+			               <thead>
+			                  <tr>
+			                     <th>Descripción de los hechos:</th>
+			                  </tr>
+			               </thead>
+			               <tbody>
+			                  <!--<t t-foreach="amonestacion.libro_ids" t-as="libro">-->
+				             <tr>
+			                        <td><span t-field="amonestacion.motivo"/></td>
+				             </tr>
+			                  <!--</t>-->
+			               </tbody>
+			            </table>
+
+						<br/>
+
+                        <table class="table table-sm o_main_table">
+			               <thead>
+			                  <tr>
+			                     <th>Medida educativa propuesta:</th>
+			                  </tr>
+			               </thead>
+			               <tbody>
+			                  <!--<t t-foreach="amonestacion.libro_ids" t-as="libro">-->
+				             <tr>
+			                        <td><span t-field="amonestacion.medida_propuesta"/></td>
+				             </tr>
+			                  <!--</t>-->
+			               </tbody>
+			            </table>
+			            <p></p>
+
+						<br/>
+                        <table class="table table-sm o_main_table">
+			               <thead>
+			                  <tr>
+			                     <th>El/La profesor/a</th>
+			                     <th>Jefatura de estudios</th>
+			                  </tr>
+			               </thead>
+			               <tbody>
+			                  <!--<t t-foreach="amonestacion.libro_ids" t-as="libro">-->
+				             <tr>
+			                        <td><br/> <br/></td>
+			                        <td><br/> <br/></td>
+				             </tr>
+			                  <!--</t>-->
+			               </tbody>
+			            </table>
+
+						<br/>
+						<br/>
+						
+                        D./Dª ................................................................................................ como padre/madre o representante legal del alumno/a me doy por informado sobre la presente amonestación.
+                        En Cádiz, a ........ de ................. de 20......
+						<br/>
+                        Firmado:
 
                     </div>
                 </t>

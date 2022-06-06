@@ -1,0 +1,83 @@
+<odoo>
+<data>
+    <report
+        id="jefatura.expulsion_report"
+        model="jefatura.expulsion"
+        string="Informe de expulsión"
+        name="jefatura.expulsion_report_view"
+        file="jefatura.expulsion_report"
+        report_type="qweb-pdf" />
+
+    <template id="expulsion_report_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="expulsion">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!--<h1><span t-field="expulsion.nombre"/> <span t-field="expulsion.apellidos" /></h1>-->
+                        
+                        <h1><center>EXPULSIÓN</center></h1>
+                        <t t-foreach="expulsion.alumno_id" t-as="alumno">
+							<h2><center><span t-field="alumno.nombre"/> <span t-field="alumno.apellidos"/></center></h2>
+                            <h4><center>Les comunicamos que su hijo/a ha sido sancionado/a por la Dirección del Centro debido a las siguientes amonestaciones:</center></h4>
+                        </t>
+
+						<br/>
+
+			            <table class="table table-sm o_main_table">
+			               <thead>
+			                  <tr>
+			                     <th>Amonestaciones</th>
+			                  </tr>
+			               </thead>
+			               <tbody>
+			                  <t t-foreach="expulsion.amonestacion_ids" t-as="amonestacion">
+								 <tr>
+									 <td><span t-field="amonestacion.fecha"/> - <span t-field="amonestacion.motivo"/> <br/></td>
+								 </tr>
+			                  </t>
+			               </tbody>
+			            </table>
+
+						<br/>
+
+			            <p></p>
+						<center>Este comportamiento es objeto de sanción, tal como se recoge en el artículo 34, referente a las Normas de Convivencia del Decreto 327/2010, de 13 de julio, por el que se aprueba el Reglamento Orgánico de los Institutos de Educación Secundaria.</center>
+
+			            <p></p>
+						<br/>
+                        <table class="table table-sm o_main_table">
+			               <thead>
+			                  <tr>
+			                     <th>Período de expulsión: <span t-field="expulsion.num_dias"/> días.<br/>
+								 </th>
+			                  </tr>
+			               </thead>
+			               <tbody>
+				             <tr>
+								 <td><br/> El/La alumno/a tiene el derecho y la obligación de presentarse a los exámenes que se convoquen durante dichos días.<br/></td>
+							 </tr>
+			               </tbody>
+			            </table>
+
+						<br/>
+						<br/>
+
+                        D./Dª ................................................................................................, como padre/madre o representante legal del alumno/a, me doy por informado sobre la presente expulsión.
+                        <br/>
+
+						<center>En Cádiz, a ........ de ................. de 20......</center>
+
+						<br/>
+
+						<br/>
+
+                        Firmado:
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</data>
+</odoo>
