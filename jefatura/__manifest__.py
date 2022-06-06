@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "jefatura",
+    'name': "Jefatura",
 
     'summary': "Gestión de la jefatura de estudios.",
 
@@ -34,4 +34,6 @@
     'demo': [
         'demo/demo.xml',
     ],
+    # Indicamos que es una aplicación
+    'application': True,
 }
