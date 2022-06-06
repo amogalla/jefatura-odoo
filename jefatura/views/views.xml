@@ -1,19 +1,8 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="jefatura.list">
-      <field name="name">jefatura list</field>
-      <field name="model">jefatura.jefatura</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
+  <!-- explicit list view definition -->
+  <!-- Vistas de Jefatura -->
+  <!-- Tree -->
 
     <!-- actions opening views on models -->
 <!--
@@ -56,5 +45,294 @@
     <menuitem name="Server to list" id="jefatura" parent="jefatura.menu_2"
               action="jefatura.action_server"/>
 -->
+
+  <!-- Vistas de PROFESOR -->
+  <!-- Tree -->
+
+  <record model="ir.ui.view" id="jefatura.profesor_list_view">
+    <field name="name">jefatura.profesor.view.tree</field>
+    <field name="model">jefatura.profesor</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="nombre"/>
+        <field name="apellidos"/>
+        <field name="telefono"/>
+        <field name="email"/>
+        <field name="alias_telegram"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form -->
+  <record model="ir.ui.view" id="jefatura.profesor_form_view">
+    <field name="name">jefatura.profesor.view.form</field>
+    <field name="model">jefatura.profesor</field>
+    <field name="arch" type="xml">
+      <form string="Formulario de profesor">
+        <sheet>
+         <div class="oe_title">
+           <label class="oe_edit_only" for="nombre" string="Nombre y apellidos"/>
+           <h1>
+              <field name="nombre" placeholder="Nombre del profesor"/>
+              <field name="apellidos" placeholder="Apellido/s del profesor"/>
+           </h1>
+         </div>
+  
+         <group>
+           <group>
+             <field name="telefono"/>
+             <field name="email"/>
+           </group>
+           <group>
+             <field name="alias_telegram"/>
+           </group>
+         </group>
+  
+         <group>
+           <field name="asignatura_ids"/>
+         </group>
+  
+        </sheet>
+      </form>
+    </field>
+  </record>
+  
+  
+<!-- Vistas de ALUMNO -->
+  <!-- Tree -->
+
+  <record model="ir.ui.view" id="jefatura.alumno_list_view">
+    <field name="name">jefatura.alumno.view.tree</field>
+    <field name="model">jefatura.alumno</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="nombre"/>
+        <field name="apellidos"/>
+        <field name="telefono"/>
+        <field name="email"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form -->
+  <record model="ir.ui.view" id="jefatura.alumno_form_view">
+    <field name="name">jefatura.alumno.view.form</field>
+    <field name="model">jefatura.alumno</field>
+    <field name="arch" type="xml">
+      <form string="Formulario de alumno">
+        <sheet>
+         <div class="oe_title">
+           <label class="oe_edit_only" for="nombre" string="Nombre"/>
+           <h1>
+              <field name="nombre" placeholder="Nombre del alumno"/>
+              <field name="apellidos" placeholder="Apellido/s del alumno"/>
+           </h1>
+         </div>
+  
+         <group>
+           <group>
+             <field name="telefono"/>
+             <field name="email"/>
+           </group>
+
+         </group>
+
+         <group>
+           <field name="asignatura_ids"/>
+         </group>
+
+
+         <group>
+           <field name="amonestacion_ids"/>
+         </group>
+  
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+<!-- Vistas de CURSO -->
+  <!-- Tree -->
+
+  <record model="ir.ui.view" id="jefatura.list">
+    <field name="name">jefatura.curso.view.tree</field>
+    <field name="model">jefatura.curso</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="nombre"/>
+        <field name="letra"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form -->
+  <record model="ir.ui.view" id="jefatura.curso_form_view">
+    <field name="name">jefatura.curso.view.form</field>
+    <field name="model">jefatura.curso</field>
+    <field name="arch" type="xml">
+      <form string="Formulario de curso">
+        <sheet>
+         <div class="oe_title">
+           <label class="oe_edit_only" for="nombre" string="Nombre"/>
+           <h1>
+              <field name="nombre" placeholder="Nombre del curso"/>
+              <field name="letra" placeholder="Letra"/>
+           </h1>
+         </div>
+  
+         <group>
+           <field name="asignatura_ids"/>
+         </group>
+         
+         <group>
+           <field name="profesor_ids"/>
+         </group>
+        
+        <!-- ¿¿¿Cómo se puede hacer???-->
+         <!--<group>
+           <field name="asignatura_ids"/>
+         </group>
+         -->
+  
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+<!-- Vistas de AMONESTACIÓN -->
+  <!-- Tree -->
+
+  <record model="ir.ui.view" id="jefatura.list">
+    <field name="name">jefatura.amonestacion.view.tree</field>
+    <field name="model">jefatura.amonestacion</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="fecha"/>
+        <field name="motivo"/>
+        <field name="alumno_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form -->
+  <record model="ir.ui.view" id="jefatura.amonestacion_form_view">
+    <field name="name">jefatura.amonestacion.view.form</field>
+    <field name="model">jefatura.amonestacion</field>
+    <field name="arch" type="xml">
+      <form string="Formulario de amonestación">
+        <sheet>
+         <div class="oe_title">
+            <group>
+                <field name="alumno_id"/>
+            </group>
+            <group>
+                <field name="motivo" placeholder="Motivo de la amonestación"/>
+                <field name="fecha" placeholder="Fecha"/>
+            </group>
+         </div>
+  
+         <group>
+           <field name="profesor_id"/>
+         </group>
+  
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+<!-- Vistas de ASIGNATURA -->
+  <!-- Tree -->
+
+  <record model="ir.ui.view" id="jefatura.list">
+    <field name="name">jefatura.asignatura.view.tree</field>
+    <field name="model">jefatura.asignatura</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="nombre"/>
+        <field name="curso_id"/>
+        <field name="profesor_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form -->
+  <record model="ir.ui.view" id="jefatura.asignatura_form_view">
+    <field name="name">jefatura.asignatura.view.form</field>
+    <field name="model">jefatura.asignatura</field>
+    <field name="arch" type="xml">
+      <form string="Formulario de asignatura">
+        <sheet>
+         <div class="oe_title">
+            <group>
+                <field name="nombre" placeholder="Nombre de la asignatura"/>
+            </group>
+            <group>
+                <field name="alumno_ids"/>
+            </group>
+         </div>
+  
+         <group>
+           <field name="profesor_id"/>
+         </group>
+         <group>
+           <field name="curso_id"/>
+         </group>
+  
+        </sheet>
+      </form>
+    </field>
+  </record>
+  
+  <!-- Definimos los menús -->
+  <!-- actions opening views on models -->
+
+  <record model="ir.actions.act_window" id="jefatura.profesor_action_window">
+    <field name="name">Profesores</field>
+    <field name="res_model">jefatura.profesor</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  
+    <record model="ir.actions.act_window" id="jefatura.alumno_action_window">
+    <field name="name">Alumnos</field>
+    <field name="res_model">jefatura.alumno</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <record model="ir.actions.act_window" id="jefatura.asignatura_action_window">
+    <field name="name">Asignaturas</field>
+    <field name="res_model">jefatura.asignatura</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <record model="ir.actions.act_window" id="jefatura.amonestacion_action_window">
+    <field name="name">Amonestaciones</field>
+    <field name="res_model">jefatura.amonestacion</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <record model="ir.actions.act_window" id="jefatura.curso_action_window">
+    <field name="name">Cursos</field>
+    <field name="res_model">jefatura.curso</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <!-- Top menu item -->
+  <menuitem name="Jefatura" id="jefatura.menu_root" web_icon="jefatura,static/description/jefatura.jpg"/>
+
+  <!-- menu categories -->
+  <menuitem name="Profesores" id="jefatura.profesor_menu" parent="jefatura.menu_root" action="jefatura.profesor_action_window"/>
+  <menuitem name="Alumnos" id="jefatura.alumno_menu" parent="jefatura.menu_root" action="jefatura.alumno_action_window"/>
+  <menuitem name="Amonestaciones" id="jefatura.amonestacion_menu" parent="jefatura.menu_root" action="jefatura.amonestacion_action_window"/>
+  <menuitem name="Asignaturas" id="jefatura.asignatura_menu" parent="jefatura.menu_root" action="jefatura.asignatura_action_window"/>
+  <menuitem name="Cursos" id="jefatura.curso_menu" parent="jefatura.menu_root" action="jefatura.curso_action_window"/>
+
+    
+    
   </data>
 </odoo>
