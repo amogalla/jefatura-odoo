@@ -1,0 +1,45 @@
+<odoo>
+<data>
+    <report
+        id="jefatura.amonestacion_report"
+        model="jefatura.amonestacion"
+        string="Informe de amonestación"
+        name="jefatura.amonestacion_report_view"
+        file="jefatura.amonestacion_report"
+        report_type="qweb-pdf" />
+
+    <template id="amonestacion_report_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="amonestacion">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!--<h1><span t-field="amonestacion.nombre"/> <span t-field="amonestacion.apellidos" /></h1>-->
+                        
+                        <h3>Amonestación:</h3>			
+			<table class="table table-sm o_main_table">
+			   <thead>
+			      <tr>
+			         <th>Motivo</th>
+			         <th>Fecha</th>
+			      </tr>
+			   </thead>
+			   <tbody>
+			      <!--<t t-foreach="amonestacion.libro_ids" t-as="libro">-->
+				 <tr>
+			            <td>motivo</td>
+			            <td>fecha</td>
+			            <!--<td><span t-field=""/></td>-->
+				 </tr>
+			      <!--</t>-->
+			   </tbody>
+			</table>
+			<p></p>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</data>
+</odoo>
