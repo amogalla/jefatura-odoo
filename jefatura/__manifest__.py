@@ -29,6 +29,7 @@
         'views/views.xml',
         'views/templates.xml',
         'report/jefatura_amonestacion_report.xml',
+        'report/jefatura_expulsion_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
