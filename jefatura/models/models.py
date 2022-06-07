@@ -1,17 +1,12 @@
-# -*- coding: utf-8 -*-
-
 from odoo import models, fields, api
 import requests
 import urllib.parse
 import json
 
-
 class telegram():
     TOKEN = "<<TOKEN>>"
     chat_id = "<<chat_id>>"
     def codificar_diccionario(diccionario):
-        # dict_reply_json = json.dumps(diccionario)
-        # reply = urllib.parse.quote_plus(dict_reply_json)
         return json.dumps(diccionario)
 
     def mensaje_telegram_expulsion(texto, id_alumno, tupla_amonestaciones):
