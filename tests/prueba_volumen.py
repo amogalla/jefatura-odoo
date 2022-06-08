@@ -22,7 +22,7 @@ def registrar_log_expulsion(conexion):
 
 
 if __name__ == '__main__':
-    for iter in range(1,10):
+    for iter in range(1,10000):
         print(iter)
         registrar_log_expulsion(conectar_psql())
 
