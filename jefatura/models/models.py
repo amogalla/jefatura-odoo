@@ -3,6 +3,7 @@ import requests
 import urllib.parse
 import json
 
+
 class telegram():
     TOKEN = "<<TOKEN>>"
     chat_id = "<<chat_id>>"
@@ -86,9 +87,8 @@ class alumno(models.Model):
     def inc_amonestaciones(self):
         self.num_amonestaciones += 1
         self.num_amonestaciones_sin_computar += 1
-        #telegram.mensaje_telegram_jefe_estudios(self.amonestacion_ids)
         
-        if self.num_amonestaciones_sin_computar >= 3:
+        if self.num_amonestaciones_sin_computar >= 3: # Se envía aviso al jefe de estudios
             id_alumno = str(self.id)
             tupla_amonestaciones = ""
             texto = "El alumno " + self.nombre_completo + " ha recibido una amonestación que podría suponer la expulsión del centro. \n\nActualmente tiene estas amonestaciones sin computar:\n"
@@ -115,10 +115,9 @@ class profesor(models.Model):
     chat_id_telegram = fields.Char('ID Chat en Telegram')
     imagen = fields.Binary(string ="Imagen del profesor")
 
-    #Relaciones con otras tablas
+    # Relaciones con otras tablas
     asignatura_ids = fields.One2many('jefatura.asignatura', 'profesor_id', string = 'Asignaturas')
     amonestacion_ids = fields.One2many('jefatura.amonestacion', 'profesor_id', string = 'Amonestaciones')
-    #curso_ids = fields.One2many('jefatura.curso', 'profesor_id', string = 'Cursos')
     curso_id = fields.Many2one('jefatura.curso', string = 'Curso')
 
     def rellenar_nombre_completo(self, nombre, apellidos):
@@ -132,7 +131,7 @@ class asignatura(models.Model):
 
     nombre = fields.Char('Nombre', required = True)
 
-    #Relaciones con otras tablas
+    # Relaciones con otras tablas
     alumno_ids = fields.Many2many('jefatura.alumno', string = 'Alumnos')
     profesor_id = fields.Many2one('jefatura.profesor', string = 'Profesor')
     curso_id = fields.Many2one('jefatura.curso', string = 'Curso')
@@ -153,8 +152,6 @@ class tarea(models.Model):
 
 class curso(models.Model):
     _name = 'jefatura.curso'
-    #_inherit = 'jefatura.profesor'
-    #_inherits = {'jefatura.profesor': "profesor_id"}
     _description = 'Permite definir un curso'
     _order = 'nombre'
     _rec_name = 'nombre_completo'
@@ -163,7 +160,7 @@ class curso(models.Model):
     aclarador = fields.Char('Aclarador')
     nombre_completo = fields.Char('Nombre curso completo')
 
-    #Relaciones con otras tablas
+    # Relaciones con otras tablas
     profesor_ids = fields.One2many('jefatura.profesor', 'curso_id', string = 'Tutor/es')
     asignatura_ids = fields.One2many('jefatura.asignatura', 'curso_id', string = 'Asignaturas')
 
@@ -182,7 +179,7 @@ class amonestacion(models.Model):
     medida_propuesta = fields.Char(string='Medida educativa propuesta', required = True)
     computada = fields.Boolean(string='¿Amonestación ya computada?', required = True, default = False)
 
-    #Relaciones con otras tablas
+    # Relaciones con otras tablas
     profesor_id = fields.Many2one('jefatura.profesor', string = 'Profesor', required = True)
     alumno_id = fields.Many2one('jefatura.alumno', string = 'Alumno', required = True)
     expulsion_id = fields.Many2one('jefatura.expulsion', string = 'Expulsión', required = True)
@@ -206,7 +203,7 @@ class expulsion(models.Model):
     estado = fields.Char(string='Estado', default='Borrador')
     num_dias = fields.Integer(string='Período de expulsión', default=3, required = True)
 
-    #Relaciones con otras tablas
+    # Relaciones con otras tablas
     alumno_id = fields.Many2one('jefatura.alumno', string = 'Alumno', required = True)
     amonestacion_ids = fields.One2many('jefatura.amonestacion', 'expulsion_id', string = 'Amonestaciones')
     tarea_ids = fields.One2many('jefatura.tarea', 'expulsion_id', string='Tareas')
@@ -228,7 +225,6 @@ class expulsion(models.Model):
         for amonestacion in self.amonestacion_ids:
             if amonestacion.computada == False:
                 amonestacion.computada = True
-            #texto += str(amonestacion.fecha) + " - " + amonestacion.motivo + "\n"
 
 
         self.estado = 'Validada'
