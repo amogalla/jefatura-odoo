@@ -1,4 +1,4 @@
-# ERP para Jefatura de un Instituo de Enseñanza Secundaria
+# ERP para Jefatura de un Instituto de Enseñanza Secundaria
 
 ![PDF amonestacion](https://raw.githubusercontent.com/amogalla/jefatura-odoo/main/imagenes/odoo-telegram.png)
 
